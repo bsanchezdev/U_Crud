@@ -1,0 +1,100 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13-10-2015, 10:18:43
+    Author     : Desarrollo
+*/
+
+.contenedor
+{
+    padding: 10px 30px 10px 30px;
+}
+
+.fila
+{
+    width: 100%;
+}
+
+.columna50
+{
+    width: 50%;
+    float: left;
+}
+
+.columna33
+{
+    width: 33.3%;
+    float: left;
+}
+
+.altura
+{
+    height:300px;
+}
+
+.color-de-fondo-a
+{
+    background-color: #b2dba1;
+}
+
+.color-de-fondo-b
+{
+    background-color: #5bc0de;
+}
+
+.color-de-fondo-c
+{
+    background-color: #83b3be;
+}
+
+.color-de-fondo-d
+{
+    background-color: #D5D5D5;
+}
+
+/* comentario */
+
+input[type=text] {
+    width: 150px;
+    display: block;
+    margin-bottom: 10px;
+    background-color: yellow;
+}
+
+input[type=button] {
+    width: 120px;
+    margin-left: 35px;
+    display: block;
+}
+
+textarea
+{
+    background-color: #b2dba1;
+}
+
+.todoelancho
+{
+    width:100% !important;
+    margin-left: 0px !important;
+}
+
+.paddtop10
+{
+    padding-top: 10px;
+}
+
+.cajaA
+{
+    width:20%;
+      
+}
+
+.imagen-perfil
+{
+    width: 50%;
+    height: 50%;
+    border: 7px double rgb(133, 148, 203);
+}

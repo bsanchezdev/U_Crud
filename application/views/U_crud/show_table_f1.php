@@ -31,5 +31,6 @@
     </table>
         </div>
     </div>
-    <?= $this->pagination->create_links() ?>
+    <?php
+    $this->pagination->create_links() ?>
     </div>

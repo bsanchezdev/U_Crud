@@ -8,8 +8,8 @@
 
 /**
  * Description of U_Crud
- *
- * @author Desarrollo
+ * @author BENJAMIN SANCHEZ
+ * bsanchezdev@gmail.com
  */
 require_once SYSDIR.'/core/Model.php'; 
 class U_Crud  extends CI_Model{

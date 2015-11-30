@@ -9,7 +9,8 @@
 /**
  * Description of A
  *
- * @author Desarrollo
+ * @author BENJAMIN SANCHEZ
+ * bsanchezdev@gmail.com
  */
 class A extends CI_Controller{
     public function __construct() {
@@ -74,8 +75,10 @@ class A extends CI_Controller{
             ));
         
           $data["grid_2"]=$this->u_crud->show();
+          if (!$this->input->is_ajax_request()) 
+          {
           $this->load->view("u_crud/tab_2",$data);
-            
+          }else{echo $data["grid_2"];}  
         }
     
 }

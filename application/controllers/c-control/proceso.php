@@ -73,11 +73,13 @@ class Proceso extends CI_Controller{
     }
     
     public function edicion() {
-        echo "proceso para guardar edicion";
+    //    echo "proceso para guardar edicion";
+        var_dump($this->input->post());
     }
     
     public function borrado() {
-     echo "proceso para borrar"; 
+   //  echo "proceso para borrar"; 
+     var_dump($this->input->post());
     }
     
 }

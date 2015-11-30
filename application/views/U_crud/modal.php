@@ -1,3 +1,4 @@
+
 <button id="periodo" class = "btn btn-primary btn-lg hidden" data-toggle = "modal" data-target = "#myModal">
 </button>
 <!-- Modal -->
@@ -78,8 +79,9 @@
     {
        
      var los_datos="";
+     
       $('[u_dev=data-field]').each (function() {
-           
+          // alert($(this).val());
             los_datos=los_datos+$(this).val()+"|"
            
 }); 

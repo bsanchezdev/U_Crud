@@ -40,6 +40,10 @@ class Proceso extends CI_Controller{
         $data["controlador_edicion"]=$this->input->post("ce");
         $data["controlador_borrado"]=$this->input->post("cb");
         $data["controlador_creacion"]=$this->input->post("cc");
+        
+        
+        $data["columnas"]=$this->input->post("columnas");
+        $data["editable_cols"]=$this->input->post("editable_cols");
       $this->load->view("U_crud/modal",$data);
     }
     
@@ -61,7 +65,7 @@ class Proceso extends CI_Controller{
                 {
              $campo.="<div class='col-md-12'>"
                     . "<label>$value</label>"
-                    . "<span style='background-color: rgb(221, 221, 221); color: rgb(9, 37, 119); 'u_dev='data-field' class='form-control'>".$this->C_input["data"][$key]."</span>"
+                    . "<input readonly class='form-control' type='text' name='$key' value='".$this->C_input["data"][$key]."' u_dev='data-field'/>"
                     . "</div>";   
                 }
         }
@@ -69,11 +73,11 @@ class Proceso extends CI_Controller{
     }
     
     public function edicion() {
-        
+        echo "proceso para guardar edicion";
     }
     
     public function borrado() {
-        
+     echo "proceso para borrar"; 
     }
     
 }

@@ -1,7 +1,7 @@
 <button id="periodo" class = "btn btn-primary btn-lg hidden" data-toggle = "modal" data-target = "#myModal">
 </button>
 <!-- Modal -->
-<div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog" 
+<div class = "modal " id = "myModal" tabindex = "-1" role = "dialog" 
    aria-labelledby = "myModalLabel" aria-hidden = "true">
    
    <div class = "modal-dialog">
@@ -45,22 +45,28 @@
     $("#borrar").on("click",function()
     {
         if(confirm('Esta seguro de querer borrar?')){
+             var los_datos="";
+      $('[u_dev=data-field]').each (function() {
+           
+            los_datos=los_datos+$(this).val()+"|"
+           
+}); 
  $('#myModal').modal('hide')                                             ;
-        var datos="";
+        var datos=los_datos;
         var data_original="";
         data_original="<?=$data_original?>";
         $.ajax({
   type: "POST",
   url: "<?= base_url("$controlador_borrado");?>/",
-  data: {datos: data_original},
+  data: {data:datos,original: data_original,columnas:'<?=$columnas?>'},
   success: function(data){
      
-      $( ".contenedor-datos-ajax" ).html( data );
-      window.location.replace("<?= base_url("$controlador");?>");
+      $( ".salida" ).html( data );
+     // window.location.replace("<?= base_url("$controlador");?>");
      // alert(data);
   },
   error: function(XMLHttpRequest, textStatus, errorThrown) {
-    $( ".contenedor-datos-ajax" ).html( errorThrown + XMLHttpRequest.responseText);
+    $( ".salida" ).html( errorThrown + XMLHttpRequest.responseText);
     alert( errorThrown + XMLHttpRequest.responseText);
   }
 });
@@ -71,10 +77,10 @@
     $("#continuar").on("click",function()
     {
        
-    
-      $("span[u-dev='data-field']").each (function() {
+     var los_datos="";
+      $('[u_dev=data-field]').each (function() {
            
-            alert($(this).text());
+            los_datos=los_datos+$(this).val()+"|"
            
 }); 
        
@@ -84,21 +90,21 @@ $('#myModal').modal('hide');
 var datos="";
 var data_original="";
 data_original="<?=$data_original?>";
-datos=$("#Grupo").val()+"|"+$("#Usuario").val()+"|"+$("#Rut").val()+"|"+$("#Nombre").val()+"|"+$("#Turno").val()+"|"+$("#Periodo").val(); 
-$(".contenedor-datos-ajax").prepend('<div class="progr" style="height: 20px; width:100px"></div>');
-        $(".progr" ).html('<img src="<?=base_url('/imagenes/6C59C7124.gif');?>" width="100%"/>' );
+datos=los_datos; 
+
             $.ajax({
   type: "POST",
   url: "<?= base_url($controlador_edicion)?>/",
-  data: {data:datos,original: data_original},
+  data: {data:datos,original: data_original,columnas:'<?=$columnas?>'},
   success: function(data){
      
-      $( ".contenedor-datos-ajax" ).html( data );
+      $( ".salida" ).html( data );
+      
       //window.location.replace("<?= base_url("carga_usuarios_reportes/A/");?>");
       
   },
   error: function(XMLHttpRequest, textStatus, errorThrown) {
-    $( ".contenedor-datos-ajax" ).html( errorThrown + XMLHttpRequest.responseText);
+    $( ".salida" ).html( errorThrown + XMLHttpRequest.responseText);
   }
 });     
 

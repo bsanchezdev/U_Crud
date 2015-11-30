@@ -34,7 +34,7 @@ class U_Crud  extends CI_Model{
     var $controlador            =   "c-control/proceso/"   ;
     var $controlador_edicion    =   "c-control/proceso/edicion"   ;
     var $controlador_creacion   =   "c-control/proceso/crear"   ;
-    var $controlador_borrado    =   "c-control/proceso/borrar"   ;
+    var $controlador_borrado    =   "c-control/proceso/borrado"   ;
     var $controlador_box        =   "c-control/proceso/box"   ;
     var $col_edit_data          =   null;
     var $col_edit_keys          = null;

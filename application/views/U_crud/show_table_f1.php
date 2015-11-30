@@ -1,5 +1,4 @@
 <div class="container">
-       
     <div class="row">
         <div class="col-xs-12 table-responsive">
     <table id="<?= $id_tab ?>" class="table table-striped table-condensed display">
@@ -31,6 +30,7 @@
     </table>
         </div>
     </div>
-    <?php
-    $this->pagination->create_links() ?>
+    <div class="<?= $id_links ?>">
+    <?= $this->pagination->create_links() ?>
+    </div>
     </div>

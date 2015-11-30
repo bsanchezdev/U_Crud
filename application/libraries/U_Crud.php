@@ -28,6 +28,7 @@ class U_Crud  extends CI_Model{
     var $tlinks=0;
     var $burl="";
     var $segment=4;
+var $id_links=null;
     public function __construct() {
         $this->CI = get_instance()                                            ;
         $this->CI->load->helper("bootstrap");
@@ -172,8 +173,13 @@ foreach ($query->list_fields() as $field)
                 return $this;
         }
         
+        public function set_id_links($param) {
+            $this->id_links=$param;
+            return $this;
+        }
         public function show($show=true,$src="show_table_f1",$titulo="U_Crud Show Tabla")
         {
+            $this->data_html=null;
             if(!isset($this->config)):
                 $this->set_config_pag();
             endif;
@@ -182,7 +188,9 @@ foreach ($query->list_fields() as $field)
 		$this->pagination->initialize($this->config); //inicializamos la paginación		
 		$data["data_tabla"] = $this->total_paginados($this->config['per_page'],$this->uri->segment($this->segment));			
                 $data['columnas'] = $this->get_columnas();
-                $data['id_tab']=$this->tabla;
+                     $data['id_tab']=$this->tabla;
+                     $data['id_links']=$this->id_links;
+               
 		$this->data_html.=$this->CI->load->view('U_crud/'.$src, $data,true);
                 if ($show===true):
                     $this->CI->load->view('U_crud/'.$this->head_page, $data);

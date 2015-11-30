@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 table-responsive">
-    <table id="<?= $id_tab ?>" class="table table-striped table-condensed display">
+    <table id="<?= $id_tab ?>" class="table table-striped table-condensed display table-hover">
     <thead>
     <?php
     if($data_tabla)
@@ -23,12 +23,11 @@
     </tr>
     <?php
     }
-    
     }
     ?>
     </tbody>
     </table>
-        </div>
+    </div>
     </div>
     <div class="<?= $id_links ?>">
     <?= $this->pagination->create_links() ?>

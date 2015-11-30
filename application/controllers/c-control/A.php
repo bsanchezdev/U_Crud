@@ -38,13 +38,15 @@ class A extends CI_Controller{
                     banco_ripley_carga.OPERACION,
                     banco_ripley_carga.CUOTA 
                     from banco_ripley_carga")
-           ->set_config_pag($config)->set_id_links("g1");
+           ->set_config_pag($config)->set_id_links("g1")->set_id_tab("T_grid1");
           
-          $data["grid_1"]=$this->u_crud->show(false);
+          $data["grid_1"]=$this->u_crud->show();
           $this->load->view("u_crud/tab_1",$data);
-        if(count($this->uri->rsegments)<3):
+          
+          if (!$this->input->is_ajax_request()) 
+          {
           $this->grid2();  
-        endif;
+          }
           
         }
         
@@ -53,7 +55,7 @@ class A extends CI_Controller{
         $this->u_crud
            ->use_db("pagos")
            ->query("SELECT
-                pagtmo_in_copy.id,
+                pagtmo_in_copy.id as ID,
                 pagtmo_in_copy.fecha_data,
                 pagtmo_in_copy.rut_emp,
                 pagtmo_in_copy.operacion,
@@ -63,9 +65,15 @@ class A extends CI_Controller{
                 FROM
                 pagtmo_in_copy
             ")
-           ->set_config_pag($config)->set_id_links("g2");
+           ->set_config_pag($config)->set_id_links("g2")->set_id_tab("T_grid2");
           
-          $data["grid_2"]=$this->u_crud->show(false);
+        $this->u_crud->edit(array(
+            "ID"     ,
+            "operacion"      ,
+            "rut_emp"       
+            ));
+        
+          $data["grid_2"]=$this->u_crud->show();
           $this->load->view("u_crud/tab_2",$data);
             
         }

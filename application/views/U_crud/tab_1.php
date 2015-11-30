@@ -14,5 +14,39 @@ $this->load->view("u_crud/head_page");
         });
     });
 </script>
+<script>
+    $(".g1 ul li a").click(function(e)
+    {
+        e.preventDefault()             ;
+        var href=$(this).attr("href")  ;
+        $.get( href, function( data ) {            
+        $( "#grid_2" ).html( data );
+        });
+    });
 
+//
+$('#<?= $id_tab?> tbody').on('click', 'tr', function () {
+    
+        var id = this.id;
+        var datos = "";
+     
+      
+     //   $(this).toggleClass('selected');
+        
+        $(this).find('td').each (function() {
+            datos=datos+$(this).html()+"|";
+           
+});
+ 
+$.ajax({
+  method: "POST",
+  url: "<?= base_url($controlador); ?>/box",
+  data: { editable_cols: '<?= $col_edit_data ?>',columnas:'<?=$columnas_data?>',data: $.trim(datos) }
+})
+  .done(function( msg ) {
+  $(".salida").empty().html(msg)   ;
+  });
+    } );
+
+</script>
 

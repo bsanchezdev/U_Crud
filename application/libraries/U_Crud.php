@@ -27,8 +27,17 @@ class U_Crud  extends CI_Model{
     var $tfilas=0;
     var $tlinks=0;
     var $burl="";
-    var $segment=4;
-var $id_links=null;
+    var $segment                =   4           ;
+    var $col_edit               =   null        ;
+    var $id_tab                 =   null        ;
+    var $id_links               =   null        ;
+    var $controlador            =   "c-control/proceso/"   ;
+    var $controlador_edicion    =   "c-control/proceso/edicion"   ;
+    var $controlador_creacion   =   "c-control/proceso/crear"   ;
+    var $controlador_borrado    =   "c-control/proceso/borrar"   ;
+    var $controlador_box        =   "c-control/proceso/box"   ;
+    var $col_edit_data          =   null;
+    var $col_edit_keys          = null;
     public function __construct() {
         $this->CI = get_instance()                                            ;
         $this->CI->load->helper("bootstrap");
@@ -177,7 +186,11 @@ foreach ($query->list_fields() as $field)
             $this->id_links=$param;
             return $this;
         }
-        public function show($show=true,$src="show_table_f1",$titulo="U_Crud Show Tabla")
+        public function set_id_tab($param) {
+            $this->id_tab=$param;
+            return $this;
+        }
+        public function show($show=false,$src="show_table_f1",$titulo="U_Crud Show Tabla")
         {
             $this->data_html=null;
             if(!isset($this->config)):
@@ -188,9 +201,29 @@ foreach ($query->list_fields() as $field)
 		$this->pagination->initialize($this->config); //inicializamos la paginación		
 		$data["data_tabla"] = $this->total_paginados($this->config['per_page'],$this->uri->segment($this->segment));			
                 $data['columnas'] = $this->get_columnas();
-                     $data['id_tab']=$this->tabla;
+                $d=null;
+                foreach ($data['columnas'] as $key => $value) {
+            $d.=$value."|";    
+            }
+            $data['columnas_data']=trim($d,"|");
+                $data['id_tab']=$this->tabla;
+                     if(isset($this->id_tab)):
+                      $data['id_tab']=   $this->id_tab;
+                     endif;
                      $data['id_links']=$this->id_links;
                
+                     $data["col_edit_data"]=$this->col_edit_data;
+                     $data["col_edit_keys"]=$this->col_edit_keys;
+                     if(isset($this->col_edit)):
+                         $data["col_edit"]=$this->col_edit;
+                     endif;
+                    $data["controlador_"]            =   $this->controlador          ;
+                    $data["controlador_edicion"]    =   $this->controlador_edicion  ;
+                    $data["controlador_creacion"]   =   $this->controlador_creacion ;
+                    $data["controlador_borrado"]    =   $this->controlador_borrado  ;
+                    $data["controlador"]            =   $this->controlador_box      ;
+                    
+                    
 		$this->data_html.=$this->CI->load->view('U_crud/'.$src, $data,true);
                 if ($show===true):
                     $this->CI->load->view('U_crud/'.$this->head_page, $data);
@@ -200,4 +233,18 @@ foreach ($query->list_fields() as $field)
                         return $this->data_html;
                 endif;
         }
+        
+        public function edit($array)
+        {
+            $this->col_edit=$array;
+            $d="";
+            foreach ($array as $key => $value) {
+            $d.=$key."|";    
+            }
+            $this->col_edit_keys=$d;
+            $this->col_edit_data=  trim(implode("|", $array),"|");
+            return $this;
+        }
+        
+      
    }
